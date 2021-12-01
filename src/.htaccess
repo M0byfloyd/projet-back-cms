@@ -1,0 +1,20 @@
+# Activation du moteur de réecriture
+RewriteEngine on
+
+#Première règle de réécriture
+#Cette recherche est une REGEX, le « ^ » veut dire ce que l’on cherche
+ #doit être en début de chaine et le « $ » que ce que l’on cherche doit
+ #être en fin de chaine. Autrement dit, la chaine doit être exactement
+ #égale à ce que l’on cherche
+ # RewriteRule ^salut$ index.php
+
+
+ #On recherche article dans une chaine, lettre et chiffre de nimporte quel longueur/ on assigne la première chaine recherché a "$1" et la seconde à "$2" avant de réinjecter dans la vrai url
+ RewriteRule ^article/([a-z0-9-]+)-([0-9]+)$ article.php?name=$1&id=$2
+
+
+
+ # Redicréction avec les flags
+
+ RewriteRule ^salut$ http://localhost:5555/article.php?name=coucou&id=45 [R=302]
+
