@@ -2,7 +2,7 @@
     "name": "alexandre/projet-back-cms",
     "autoload": {
         "psr-4": {
-            "Alexandre\\ProjetBackCms\\": "src/"
+            "App\\": "src/"
         }
     },
     "authors": [
