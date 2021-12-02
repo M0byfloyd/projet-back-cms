@@ -13,7 +13,7 @@ class Post extends BaseModel
     public function getAll($classname = null): array
     {
 
-        $datas =  $this->db_query->get('SELECT * FROM post')->fetchAll(PDO::FETCH_ASSOC);
+        $datas =  $this->db_query->query('SELECT * FROM post')->fetchAll(PDO::FETCH_ASSOC);
         $dataResult = [];
 
         foreach ($datas as $data) {
@@ -21,5 +21,10 @@ class Post extends BaseModel
         }
 
         return $dataResult;
+    }
+
+    public function getById($id)
+    {
+        return new \App\Entity\Post($this->db_query->query('SELECT * FROM post WHERE id = ' . $id )->fetch(PDO::FETCH_ASSOC));
     }
 }

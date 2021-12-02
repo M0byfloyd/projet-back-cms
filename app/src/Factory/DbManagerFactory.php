@@ -17,7 +17,7 @@ class DbManagerFactory
             'example');
     }
 
-    public function get($query) {
-        return $this->dbManager->get($query);
+    public function query($query) {
+        return $this->dbManager->query($query);
     }
 }

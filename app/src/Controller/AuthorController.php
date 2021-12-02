@@ -13,12 +13,13 @@ class AuthorController
         $this->author = new Author();
     }
 
-    public function showAll()
+    public function showAll(): array
     {
         return $this->author->getAll();
     }
 
-    public function showOne() {
+    public function showOne()
+    {
         return $this->author->getById(1);
     }
 }

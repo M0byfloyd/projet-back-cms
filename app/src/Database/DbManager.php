@@ -11,12 +11,8 @@ class DbManager
         $this->db = new \PDO('mysql:host=' . $url . ':' . $port . ';dbname=' . $dbName, $user, $password);
     }
 
-    public function get($query)
+    public function query($query)
     {
         return $this->db->query($query);
-    }
-
-    public function hydrate() {
-
     }
 }

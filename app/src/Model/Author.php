@@ -21,6 +21,6 @@ class Author extends BaseModel
 
     public function getById($id)
     {
-        return new \App\Entity\Author($this->db_query->get('select * FROM author WHERE id = ' . $id )->fetch());
+        return new \App\Entity\Author($this->db_query->query('select * FROM author WHERE id = ' . $id )->fetch());
     }
 }
