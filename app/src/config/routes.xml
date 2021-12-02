@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<routes>
+    <!-- Comments -->
+    <route p="post-comment" controller="CommentController" action=""/>
+    <route p="delete-comment" controller="CommentController" action="" params="id"/>
+</routes>
