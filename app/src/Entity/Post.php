@@ -6,7 +6,23 @@ class Post extends BaseEntity
 {
     public $title;
     public $content;
-    public $_author_id;
+    public $author_id;
+
+    /**
+     * @return mixed
+     */
+    public function getAuthorId()
+    {
+        return $this->author_id;
+    }
+
+    /**
+     * @param mixed $author_id
+     */
+    public function setAuthorId($author_id): void
+    {
+        $this->author_id = $author_id;
+    }
     public $id;
 
     /**
@@ -39,22 +55,6 @@ class Post extends BaseEntity
     public function setContent($content): void
     {
         $this->content = $content;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAuthorId()
-    {
-        return $this->_author_id;
-    }
-
-    /**
-     * @param mixed $author_id
-     */
-    public function setAuthorId($author_id): void
-    {
-        $this->_author_id = $author_id;
     }
 
     /**

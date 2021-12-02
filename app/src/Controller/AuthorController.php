@@ -15,10 +15,10 @@ class AuthorController
 
     public function showAll()
     {
-        return $this->author->getAll('author');
+        return $this->author->getAll();
     }
 
-    public function show() {
-        return $this->author->getById(1,,);
+    public function showOne() {
+        return $this->author->getById(1);
     }
 }

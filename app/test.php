@@ -37,7 +37,7 @@ $posts = $postController->showAll();
                 <?= $post->title ?>
             </td>
             <td>
-                <?= $post->_author_id ?>
+                <?= $post->author_id ?>
             </td>
             <td>
                 <?= $post->content ?>
@@ -48,4 +48,8 @@ $posts = $postController->showAll();
     ?>
     </tbody>
 </table>
+
+<?php
+
+var_dump($authorController->showOne());
 

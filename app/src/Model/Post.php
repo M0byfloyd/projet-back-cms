@@ -13,7 +13,7 @@ class Post extends BaseModel
     public function getAll($classname = null): array
     {
 
-        $datas =  parent::getAll($this->classname)->fetchAll(PDO::FETCH_ASSOC);
+        $datas =  $this->db_query->get('SELECT * FROM post')->fetchAll(PDO::FETCH_ASSOC);
         $dataResult = [];
 
         foreach ($datas as $data) {

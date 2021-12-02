@@ -7,11 +7,9 @@ use PDO;
 
 class Author extends BaseModel
 {
-    private $classname = 'author';
-
-    public function getAll($classname = null): array
+    public function getAll(): array
     {
-        $datas =  parent::getAll($this->classname)->fetchAll(PDO::FETCH_ASSOC);
+        $datas =  $this->db_query->get('SELECT * FROM author')->fetchAll(PDO::FETCH_ASSOC);
         $dataResult = [];
 
         foreach ($datas as $data) {
@@ -21,8 +19,8 @@ class Author extends BaseModel
         return $dataResult;
     }
 
-    public function getById($idName, $id)
+    public function getById($id)
     {
-        return parent::getById('id', $id);
+        return new \App\Entity\Author($this->db_query->get('select * FROM author WHERE id = ' . $id )->fetch());
     }
 }
