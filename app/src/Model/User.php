@@ -19,8 +19,13 @@ class User extends BaseModel
         return $dataResult;
     }
 
-    public function getById($id)
+    public function getById($id): UserEntity
     {
-        return new \App\Entity\User($this->db_query->query('select * FROM user WHERE id = ' . $id )->fetch());
+        return new UserEntity($this->db_query->query('SELECT * FROM user WHERE id = ' . $id )->fetch());
+    }
+
+    public function getUserByName($name): UserEntity
+    {
+        return new UserEntity($this->db_query->query('SELECT * FROM user WHERE name = ' . $name )->fetch());
     }
 }
