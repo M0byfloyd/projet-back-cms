@@ -4,9 +4,9 @@ namespace App\Controller;
 
 class BaseController
 {
+    public string $templatesPath = './templates/';
+    public string $template = 'layout.php';
     public $params;
-    public $templatesPath = './templates/';
-    public $template = 'layout.php';
 
     public function render (string $view, array $vars = [], string $pageTitle = 'Blog génial') {
         $view = $this->templatesPath . $view . '.view.php';
