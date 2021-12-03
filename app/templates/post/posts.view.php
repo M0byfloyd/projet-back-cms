@@ -1,9 +1,3 @@
-<pre>
-<?php
-$allPosts = $vars['allPosts'];
-?>
-
-</pre>
 <?php
 
 foreach ($allPosts as $post):

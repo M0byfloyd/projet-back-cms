@@ -26,6 +26,12 @@ class User extends BaseModel
 
     public function getUserByName($name): UserEntity
     {
-        return new UserEntity($this->db_query->query('SELECT * FROM user WHERE name = ' . $name )->fetch());
+        return new UserEntity($this->db_query->query("SELECT * FROM user WHERE name = '" . $name . "'" )->fetch());
+    }
+
+    public function setUser($name, $password) {
+        $this->db_query->query("INSERT INTO user (name, password, statut) VALUE ('$name', '$password', '1')");
+
+        return intval($this->db_query->lastInsertId());
     }
 }

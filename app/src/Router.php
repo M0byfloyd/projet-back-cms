@@ -8,7 +8,6 @@ class Router
         $xml = new \DOMDocument();
         $xml ->load('src/config/routes.xml');
         $routes = $xml->getElementsByTagName('route');
-        var_dump($_GET['p']);
 
         isset($_GET['p']) ? $path = htmlspecialchars($_GET['p']) : $path = "";
 

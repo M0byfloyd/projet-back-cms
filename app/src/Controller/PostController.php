@@ -18,14 +18,14 @@ class PostController extends BaseController
         foreach ($allPosts as $post) {
             $thePost =$allPosts[$post->id];
 
-            $thePost->user = $user->getById($post->id);
+            $thePost->user = $user->getById($post->user_id);
             $thePost->commentList = $comment->getAllByPost($post->id);
             $thePost->commentCount = count($thePost->commentList);
         }
 
 
 
-        return parent::render('post/posts',['allPosts' => $allPosts],'Les posts');
+        parent::render('post/posts',['allPosts' => $allPosts],'Les posts');
 
     }
 

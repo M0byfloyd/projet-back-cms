@@ -20,4 +20,8 @@ class DbManagerFactory
     public function query($query) {
         return $this->dbManager->query($query);
     }
+
+    public function lastInsertId() {
+        return $this->dbManager->lastInsertId();
+    }
 }
