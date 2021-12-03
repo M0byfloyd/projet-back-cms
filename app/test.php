@@ -1,7 +1,9 @@
 <?php
 
+use App\Controller\PostController;
+
 require __DIR__ . '/vendor/autoload.php';
 
+$postController = new PostController();
 
-$authorController = new App\Controller\AuthorController();
-$postController = new \App\Controller\PostController();
+$postController->showAll();

@@ -12,7 +12,7 @@ class DbManagerFactory
     {
         $this->dbManager = new DbManager('db',
             '3306',
-            'back-cms',
+            'back_cms',
             'root',
             'example');
     }

@@ -9,7 +9,7 @@ class Author extends BaseModel
 {
     public function getAll(): array
     {
-        $datas =  $this->db_query->get('SELECT * FROM author')->fetchAll(PDO::FETCH_ASSOC);
+        $datas =  $this->db_query->query('SELECT * FROM author')->fetchAll(PDO::FETCH_ASSOC);
         $dataResult = [];
 
         foreach ($datas as $data) {
