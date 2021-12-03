@@ -2,9 +2,21 @@
 
 namespace App\Controller;
 
-class AdminController
+use App\Model\User;
+
+class AdminController extends BaseController
 {
-    public function connection() {
+    public bool $isConnected;
+
+    public string $generalPath = 'admin/';
+    public array $paths = ['login' => 'login'];
+
+    public function showConnectionForm() {
+        $this->render('admin/connection', [] , 'Page de connexion' );
+    }
+
+    public function checkConnexion() {
+        $userModel = new User();
 
     }
 }

@@ -3,4 +3,8 @@
     <!-- Comments -->
     <route p="post" controller="PostController" action="showAll"/>
 <!--    <route p="delete-comment" controller="CommentController" action="" params="id"/>-->
+
+
+    <route p="login" controller="AdminController" action="showConnectionForm"/>
+
 </routes>

@@ -11,6 +11,10 @@ class BaseController
     public function render (string $view, array $vars = [], string $pageTitle = 'Blog génial') {
         $view = $this->templatesPath . $view . '.view.php';
 
+        foreach ($vars as $var) {
+            ${$var} = $var;
+        }
+
         ob_start();
         require $view;
         $content = ob_get_clean();
