@@ -4,24 +4,24 @@ namespace App\Entity;
 
 class Comment extends BaseEntity
 {
-    public $author_id;
+    public $user_id;
     public $post_id;
     public $content;
 
     /**
      * @return mixed
      */
-    public function getAuthorId()
+    public function getUserId()
     {
-        return $this->author_id;
+        return $this->user_id;
     }
 
     /**
-     * @param mixed $author_id
+     * @param mixed $user_id
      */
-    public function setAuthorId($author_id): void
+    public function setUserId($user_id): void
     {
-        $this->author_id = $author_id;
+        $this->user_id = $user_id;
     }
 
     /**

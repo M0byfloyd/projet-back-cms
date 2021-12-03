@@ -6,22 +6,22 @@ class Post extends BaseEntity
 {
     public $title;
     public $content;
-    public $authorid;
+    public $user_id;
 
     /**
      * @return mixed
      */
-    public function getAuthorid()
+    public function getUser_id()
     {
-        return $this->authorid;
+        return $this->user_id;
     }
 
     /**
-     * @param mixed $authorid
+     * @param mixed $user_id
      */
-    public function setAuthorid($authorid): void
+    public function setUser_id($user_id): void
     {
-        $this->authorid = $authorid;
+        $this->user_id = $user_id;
     }
 
     /**

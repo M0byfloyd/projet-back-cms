@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-class Author extends BaseEntity
+class User extends BaseEntity
 {
     public int $id;
     public bool $statut;
@@ -11,7 +11,7 @@ class Author extends BaseEntity
     /**
      * @return bool
      */
-    public function isStatut(): bool
+    public function getStatut(): bool
     {
         return $this->statut;
     }
