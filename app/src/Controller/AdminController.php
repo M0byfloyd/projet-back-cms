@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Model\User;
 
 class AdminController extends BaseController
-{
 
     public array $paths = [
         'login' => '/login',
