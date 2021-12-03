@@ -17,14 +17,14 @@ foreach ($allPosts as $post):
 <ul class="list-group list-group-flush">
       <?php foreach ($post->commentList as $comment): ?>
 
-          <li class="list-group-item"><b><?= $comment->author_id ?></b> : <?= $comment->content ?></li>
+          <li class="list-group-item"><b><?= $comment->user_id ?></b> : <?= $comment->content ?></li>
 
       <?php endforeach; ?>
   </ul>
 
   <div class="card-body">
       <span>
-          De : <a href="#" class="card-link"><?= $post->author->name ?></a>
+          De : <a href="#" class="card-link"><?= $post->user->name ?></a>
       </span>
   </div>
 </div>

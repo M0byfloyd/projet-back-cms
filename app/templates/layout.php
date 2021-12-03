@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,6 +19,9 @@
 <div class="container-fluid">
     <?= $content ?>
 </div>
+<?php
+session_destroy();
+?>
 
 
 
