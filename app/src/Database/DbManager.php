@@ -15,4 +15,9 @@ class DbManager
     {
         return $this->db->query($query);
     }
+
+    public function lastInsertId()
+    {
+        return $this->db->lastInsertId();
+    }
 }

@@ -7,6 +7,23 @@ class User extends BaseEntity
     public int $id;
     public bool $statut;
     public string $name;
+    public string $password;
+
+    /**
+     * @return string
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param string $password
+     */
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
 
     /**
      * @return bool
@@ -54,6 +71,11 @@ class User extends BaseEntity
     public function setId(int $id): void
     {
         $this->id = $id;
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->getStatut() == 1;
     }
 
 }

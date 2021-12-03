@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <routes>
     <!-- Comments -->
-    <route p="post" controller="PostController" action="showAll"/>
-<!--    <route p="delete-comment" controller="CommentController" action="" params="id"/>-->
+    <route p="" controller="PostController" action="showAll"/>
+
+    <route p="login" controller="AdminController" action="login" />
+    <route p="signup" controller="AdminController" action="signup" />
+    <route p="account" controller="AdminController" action="account" />
+
 </routes>

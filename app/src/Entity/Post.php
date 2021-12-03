@@ -7,6 +7,7 @@ class Post extends BaseEntity
     public $title;
     public $content;
     public $user_id;
+    public $id;
 
     /**
      * @return mixed
