@@ -2,9 +2,18 @@
 
 namespace App\Controller;
 
-class AdminController
+use App\Model\User;
+
+class AdminController extends BaseController
 {
-    public function connection() {
+    public bool $isConnected;
+
+    public function showConnectionForm() {
+        $this->render('admin/index', [] , 'Page de connexion' );
+    }
+
+    public function checkConnexion() {
+        $userModel = new User();
 
     }
 }
