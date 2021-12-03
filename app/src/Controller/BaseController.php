@@ -6,6 +6,7 @@ class BaseController
 {
     public string $templatesPath = './templates/';
     public string $template = 'layout.php';
+    public $params;
 
     public function render (string $view, array $vars = [], string $pageTitle = 'Blog génial') {
         $view = $this->templatesPath . $view . '.view.php';
@@ -15,5 +16,23 @@ class BaseController
         $content = ob_get_clean();
         return require $this->templatesPath . $this->template;
     }
+
+    /**
+     * BaseController constructor
+     * @param string $action
+     * @param null $id
+     */
+    public function __construct(string $action, array $params = [])
+    {
+        $this->params = $params;
+
+        $method = ucfirst($action);
+        if (!is_callable([$this, $method])){
+            throw new \RuntimeException('L\'action "' . $method . '" n\'est pas définie sur ce module');
+        }
+        $this->$method();
+    }
+
+
 
 }
