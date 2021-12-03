@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <routes>
-    <!-- Comments -->
-    <route p="post" controller="PostController" action="showAll"/>
-<!--    <route p="delete-comment" controller="CommentController" action="" params="id"/>-->
+    <route p="api-posts" controller="PostController" action="showAll"/>
+    <route p="api-post" controller="PostController" action="showOnePost"/>
+    <route p="api-users" controller="UserController" action="showAll"/>
+    <route p="api-user" controller="UserController" action="showOneUser"/>
+    <!-- <route p="api-post" controller="PostController" action="showOnePost"/>
+    <route p="api-post" controller="PostController" action="showOnePost"/> -->
 </routes>

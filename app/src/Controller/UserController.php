@@ -4,22 +4,22 @@ namespace App\Controller;
 
 use App\Model\User;
 
-class UserController
+class UserController extends BaseController
 {
-    public User $user;
 
-    public function __construct()
+    public function showAll()
     {
-        $this->user = new User();
+        $user = new User();
+        $allUsers = $user->getAll();
+        return parent::render(
+            'user/users',
+            ['allUsers' => $allUsers],
+            'Les utilisateurs'
+        );
     }
 
-    public function showAll(): array
+    public function showOneUser($userId = 1)
     {
-        return $this->user->getAll();
-    }
-
-    public function showOne()
-    {
-        return $this->user->getById(1);
+        return $this->user->getById($userId);
     }
 }
