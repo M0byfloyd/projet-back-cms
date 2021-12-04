@@ -2,9 +2,10 @@
 <routes>
     <!-- Comments -->
     <route p="" controller="PostController" action="showAll"/>
+    <route p="post" controller="PostController" action="showOne" params="id"/>
 
-    <route p="login" controller="AdminController" action="login" />
-    <route p="signup" controller="AdminController" action="signup" />
-    <route p="account" controller="AdminController" action="account" />
+    <route p="login" controller="AccountController" action="login" />
+    <route p="signup" controller="AccountController" action="signup" />
+    <route p="account" controller="AccountController" action="account" />
 
 </routes>
