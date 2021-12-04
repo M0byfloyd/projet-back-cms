@@ -29,9 +29,19 @@ class PostController extends BaseController
 
     }
 
-    public function showFirstPost()
+    public function showOne()
     {
         $model = new Post();
-        return $model->getById(1);
+        $user = new User();
+        $comment = new Comment();
+
+        $thePost = $model->getById($this->params['id']);
+
+            $thePost->user = $user->getById($thePost->user_id);
+            $comments = $comment->getAllByPost($thePost->id);
+            $thePost->commentCount = count($comments);
+
+        parent::render('post/post',['thePost' => $thePost, 'comments' => $comments],'Les posts');
+
     }
 }

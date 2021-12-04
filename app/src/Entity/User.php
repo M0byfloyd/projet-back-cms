@@ -72,10 +72,4 @@ class User extends BaseEntity
     {
         $this->id = $id;
     }
-
-    public function isAdmin(): bool
-    {
-        return $this->getStatut() == 1;
-    }
-
 }
