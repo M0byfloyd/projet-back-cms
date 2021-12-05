@@ -58,7 +58,7 @@ class PostController extends BaseController
         } else {
             $postModel = new Post();
 
-            $_SESSION['user'] = serialize($postModel->getById($postModel->setPost($title, $content)));
+            $postModel->getById($postModel->setPost($title, $content));
 
             header('Location: ' . $this->paths['account']);
             exit();
