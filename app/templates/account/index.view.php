@@ -8,20 +8,22 @@
             <input type="text" class="form-control" value="<?= $user->getName() ?>" id="exampleInputEmail1"
                    aria-describedby="emailHelp"
                    placeholder="Votre nouveau nom"
-                    name="name"
+                   name="name"
             >
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Mot de passe :</label>
             <input type="password" class="form-control" value="<?= $user->getPassword() ?>" id="exampleInputPassword1"
                    placeholder="Nouveau mdp"
-                    name="password"
+                   name="password"
             >
         </div>
         <div class="form-check">
-            <input type="checkbox" checked="<?= $user->getStatut() ?>" class="form-check-input" id="exampleCheck1">
+            <input type="checkbox" checked="<?= $user->getStatut() ?>" class="form-check-input" name="statut" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1"> Admin</label>
         </div>
+
+        <input type="hidden" name="id" value="<?= $user->getId() ?>">
         <button type="submit" class="btn btn-primary">Modifier mes infos !</button>
     </form>
 

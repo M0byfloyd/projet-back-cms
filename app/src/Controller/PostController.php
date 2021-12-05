@@ -4,14 +4,14 @@ namespace App\Controller;
 
 use App\Model\Comment;
 use App\Model\Post;
-use App\Model\User;
+use App\Model\UserModel;
 
 class PostController extends BaseController
 {
     public function showAll()
     {
         $model = new Post();
-        $user = new User();
+        $user = new UserModel();
         $comment = new Comment();
         $allPosts = $model->getAll();
 
@@ -32,7 +32,7 @@ class PostController extends BaseController
     public function showOne()
     {
         $model = new Post();
-        $user = new User();
+        $user = new UserModel();
         $comment = new Comment();
 
         $thePost = $model->getById($this->params['id']);

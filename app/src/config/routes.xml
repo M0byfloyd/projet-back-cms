@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <routes>
-    <!-- Comments -->
     <route p="" controller="PostController" action="showAll"/>
     <route p="post" controller="PostController" action="showOne" params="id"/>
 
     <route p="login" controller="AccountController" action="login" />
     <route p="signup" controller="AccountController" action="signup" />
     <route p="account" controller="AccountController" action="account" />
+    <route p="logout" controller="AccountController" action="logout" />
     <route p="users" controller="AdminController" action="showAll" />
 
 
