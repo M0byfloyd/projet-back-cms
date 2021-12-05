@@ -71,5 +71,4 @@ class AccountController extends BaseController
 
         $this->HTTPResponse->redirect('/');
     }
-    
 }
