@@ -24,7 +24,7 @@ class AccountController extends BaseController
 
             $user = $userModel->getUserByName($name);
 
-            if ($user->getPassword() === $password) {
+            if ($user->getPassword() !== $password) {
                 die('WRONG PASS WORD');
             }
 
@@ -61,4 +61,5 @@ class AccountController extends BaseController
             echo '<h2>Modification encore non effective</h2>';
         }
     }
+    
 }
