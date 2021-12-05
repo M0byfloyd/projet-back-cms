@@ -2,14 +2,16 @@
 
 namespace App\Controller;
 
-use App\Vendor\Core\Request as Request;
+use App\Vendor\Core\HTTPRequest;
+use App\Vendor\Core\HTTPResponse;
 
 class BaseController
 {
     public string $templatesPath = './templates/';
     public string $template = 'layout.php';
     public array $params;
-    public $request;
+    public $HTTPRequest;
+    public $HTTPResponse;
 
     public function render (string $view, array $vars = [], string $pageTitle = 'Blog génial') {
         $view = $this->templatesPath . $view . '.view.php';
@@ -35,7 +37,8 @@ class BaseController
     public function __construct(string $action, array $params = [])
     {
         $this->params = $params;
-        $this->request = new Request();
+        $this->HTTPRequest = new HTTPRequest();
+        $this->HTTPResponse = new HTTPResponse();
 
         $method = ucfirst($action);
         if (!is_callable([$this, $method])){
