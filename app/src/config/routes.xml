@@ -7,6 +7,7 @@
     <route p="signup" controller="AccountController" action="signup" />
     <route p="account" controller="AccountController" action="account" />
     <route p="logout" controller="AccountController" action="logout" />
+    <route p="users" controller="AdminController" action="showAll" />
 
 
 </routes>

@@ -18,6 +18,9 @@ class UserController extends BaseController
         return $this->user->getAll();
     }
 
+   
+
+
     public function showOne()
     {
         return $this->user->getById(1);
