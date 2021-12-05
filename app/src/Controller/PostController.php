@@ -23,7 +23,7 @@ class PostController extends BaseController
             $thePost->commentCount = count($thePost->commentList);
         }
 
-        parent::render('post/posts',['allPosts' => $allPosts],'Les posts');
+        $this->render('post/posts',['allPosts' => $allPosts],'Les posts');
 
     }
 

@@ -30,7 +30,7 @@ class UserManager extends BaseManager
         return new User($this->db_query->query("SELECT * FROM user WHERE name = '" . $name . "'")->fetch());
     }
 
-    public function setUser(User $user)
+    public function setUser(User $user): int
     {
         $this->db_query->query("INSERT INTO user (name, password, statut) VALUE ('". $user->getName()."', '" .$user->getPassword() ."', '1')");
 
