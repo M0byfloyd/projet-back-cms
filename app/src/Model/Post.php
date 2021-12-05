@@ -32,13 +32,12 @@ class Post extends BaseModel
     public function setPost($title, $content) {
 
         $date = date('Y-m-d', time());
-        $user_id = $_SESSION['user'];
-        var_dump(unserialize($_SESSION['user']));
+        $user_id = unserialize($_SESSION['user'])->getId();
 
 
-        $this->db_query->query("INSERT INTO post (date, user_id, commentlist, title, content) VALUE ('$date', 1, '[3]', '$title', '$content')");
 
-        // var_dump("INSERT INTO post (date, user_id, commentlist, title, content) VALUE ('$date', 1, '[3]', '$title', '$content')");
+        $this->db_query->query("INSERT INTO post (date, user_id, commentlist, title, content) VALUE ('$date', '$user_id', '[]', '$title', '$content')");
+
         return intval($this->db_query->lastInsertId());
     }
 }
