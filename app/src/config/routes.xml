@@ -4,6 +4,8 @@
     <route p="post" controller="PostController" action="showOne" params="id"/>
     <route p="posts" controller="PostController" action="showAll" />
     <route p="new-post" controller="PostController" action="newPost"/>
+    <route p="modify-post" controller="PostController" action="updatePost" params="id"/>
+
 
     <route p="login" controller="AccountController" action="login" />
     <route p="signup" controller="AccountController" action="signup" />
@@ -14,4 +16,7 @@
     <route p="users" controller="AdminController" action="showAll" />
     <route p="user" controller="AdminController" action="showOne" params="id"/>    
     <route p="user-delete" controller="AdminController" action="deleteUser" params="id"/>
+
+    <route p="new-comment" controller="CommentController" action="setComment" params="id"/>
+
 </routes>
