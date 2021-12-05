@@ -25,9 +25,8 @@ class AccountController extends BaseController
             $userModel = new UserModel();
 
             $user = $userModel->getUserByName($name);
-            var_dump($userModel->getUserByName($name));
 
-            if (empty($user)) {
+            if ($user->id == -1) {
                 $this->render('account/login', ['paths' => $this->paths], 'Page de connexion');
                 echo 'Cet utilisateur n\'existe pas';
                 return;
@@ -56,10 +55,17 @@ class AccountController extends BaseController
         $name = $_POST['name'];
         $password = $_POST['password'];
 
+
         if (empty($name) || empty($password)) {
             $this->render('account/signup', ['paths' => $this->paths], 'Page d\'inscription');
         } else {
             $userModel = new UserModel();
+
+            if ($userModel->getUserByName($name)->id !== -1) {
+                $this->render('account/signup', ['paths' => $this->paths], 'Page d\'inscription');
+                echo 'Ce nom d\'utilisateur n\'est pas disponible';
+                return;
+            }
 
             $_SESSION['user'] = serialize($userModel->getById($userModel->setUser(new User(['password' => $password, 'name' => $name]))));
 

@@ -27,12 +27,19 @@ class UserManager extends BaseManager
 
     public function getUserByName($name): User
     {
-        return new User($this->db_query->query("SELECT * FROM user WHERE name = '" . $name . "'")->fetch());
+        $user = $this->db_query->query("SELECT * FROM user WHERE name = '" . $name . "'")->fetch();
+        if ($user) {
+            return new User($user);
+        } else {
+            $user = new User();
+            $user->id = -1;
+            return $user;
+        }
     }
 
     public function setUser(User $user): int
     {
-        $this->db_query->query("INSERT INTO user (name, password, statut) VALUE ('". $user->getName()."', '" .$user->getPassword() ."', '1')");
+        $this->db_query->query("INSERT INTO user (name, password, statut) VALUE ('" . $user->getName() . "', '" . $user->getPassword() . "', '1')");
 
         return intval($this->db_query->lastInsertId());
     }
