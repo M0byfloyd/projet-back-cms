@@ -22,7 +22,14 @@ class UserManager extends BaseManager
 
     public function getById($id): User
     {
-        return new User($this->db_query->query('SELECT * FROM user WHERE id = ' . $id)->fetch());
+        $user = $this->db_query->query('SELECT * FROM user WHERE id = ' . $id)->fetch();
+        if ($user) {
+            return new User($user);
+        } else {
+            $user = new User();
+            $user->id = -1;
+            return $user;
+        }
     }
 
     public function getUserByName($name): User
@@ -48,6 +55,12 @@ class UserManager extends BaseManager
     {
         $sql = "UPDATE user SET password = '" . $user->getPassword() . "' name = '" . $user->getName() . "' statut = " . $user->getStatut() . " WHERE id =" . $user->getId();
 
+        return intval($this->db_query->lastInsertId());
+    }
+
+    public function deleteUser($id) 
+    {
+        $this->db_query->query('DELETE FROM user WHERE id = '. $id)->fetch(PDO::FETCH_ASSOC);
         return intval($this->db_query->lastInsertId());
     }
 }

@@ -29,7 +29,7 @@ class PostManager extends BaseManager
             $HTTPResponse = new HTTPResponse();
             $HTTPResponse->redirect('/');
         } else {
-            return  new Post($postData);
+            return new Post($postData);
         }
     }
 

@@ -13,5 +13,5 @@
 
     <route p="users" controller="AdminController" action="showAll" />
     <route p="user" controller="AdminController" action="showOne" params="id"/>    
-    <route p="user-delete" controller="AdminController" action="logout" params="id"/>
+    <route p="user-delete" controller="AdminController" action="deleteUser" params="id"/>
 </routes>
