@@ -24,7 +24,7 @@ class PostController extends BaseController
             $thePost->commentCount = count($thePost->commentList);
         }
 
-        parent::render('post/posts', ['allPosts' => $allPosts], 'Les posts');
+        $this->render('post/posts', ['allPosts' => $allPosts], 'Les posts');
 
     }
 
@@ -39,18 +39,17 @@ class PostController extends BaseController
         $comments = $comment->getAllByPost($thePost->id);
         $thePost->commentCount = count($comments);
 
-        parent::render('post/post', ['thePost' => $thePost, 'comments' => $comments], 'Les posts');
+        $this->render('post/post', ['thePost' => $thePost, 'comments' => $comments], 'Les posts');
 
     }
 
     public function newPost()
     {
-
         $title = $_POST['title'];
         $content = $_POST['content'];
 
         if (empty($title) || empty($content)) {
-            $this->render('post/new-post', [], 'Nouveaux  post');
+            $this->render('post/new-post', [], 'Nouveau post');
         } else {
             $postModel = new PostManager();
 
@@ -59,11 +58,10 @@ class PostController extends BaseController
                     ['title' => $title,
                         'content' => $content,
                         'date' => date('Y-m-d', time()),
-                        'user_id' => unserialize($_SESSION['user'])->getId()
+                        'user_id' => AccountController::getLoggedUser()->getId()
                     ]));
 
-            header('Location: ' . 'account');
-            exit();
+            $this->HTTPResponse->redirect('/');
         }
     }
 }
