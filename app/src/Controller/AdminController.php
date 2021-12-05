@@ -2,22 +2,16 @@
 
 namespace App\Controller;
 
-use App\Model\UserModel;
+use App\Model\UserManager as UserManager;
+
 
 class AdminController extends BaseController
 {
     public function showAll()
     {
         
-        $model = new User();
-        $user = new User();
+        $model = new UserManager();
         $allUsers = $model->getAll();
-        
-        foreach ($allUsers as $user) {
-            $theUser = $allUsers[$user->id];
-        }
-
-            
 
         $this->render('account/users',['allUsers' => $allUsers],'Les Users');
 

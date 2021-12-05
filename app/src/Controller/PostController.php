@@ -2,17 +2,17 @@
 
 namespace App\Controller;
 
-use App\Model\Comment;
-use App\Model\Post;
-use App\Model\UserModel;
+use App\Model\CommentManager;
+use App\Model\PostManager;
+use App\Model\UserManager;
 
 class PostController extends BaseController
 {
     public function showAll()
     {
-        $model = new Post();
-        $user = new UserModel();
-        $comment = new Comment();
+        $model = new PostManager();
+        $user = new UserManager();
+        $comment = new CommentManager();
         $allPosts = $model->getAll();
 
         foreach ($allPosts as $post) {
@@ -23,17 +23,15 @@ class PostController extends BaseController
             $thePost->commentCount = count($thePost->commentList);
         }
 
-
-
         parent::render('post/posts',['allPosts' => $allPosts],'Les posts');
 
     }
 
     public function showOne()
     {
-        $model = new Post();
-        $user = new UserModel();
-        $comment = new Comment();
+        $model = new PostManager();
+        $user = new UserManager();
+        $comment = new CommentManager();
 
         $thePost = $model->getById($this->params['id']);
 

@@ -9,5 +9,4 @@
     <route p="logout" controller="AccountController" action="logout" />
     <route p="users" controller="AdminController" action="showAll" />
 
-
 </routes>

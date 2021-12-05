@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Core\Request as Request;
+use App\Vendor\Core\Request as Request;
 
 class BaseController
 {
