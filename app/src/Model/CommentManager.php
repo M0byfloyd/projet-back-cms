@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Entity\Comment;
+use App\Vendor\Core\HTTPResponse;
 use PDO;
 
 class CommentManager extends BaseManager
@@ -18,5 +19,23 @@ class CommentManager extends BaseManager
             }
 
             return $dataResult;
+    }
+
+    public function getById($id)
+    {
+        $commentData = $this->db_query->query('SELECT * FROM comment WHERE id = ' . $id )->fetch(PDO::FETCH_ASSOC);
+        if (!$commentData) {
+            $HTTPResponse = new HTTPResponse();
+            $HTTPResponse->redirect('/');
+        } else {
+            return new Comment($commentData);
+        }
+    }
+
+    public function setComment(Comment $comment): int
+    {
+        $this->db_query->query("INSERT INTO comment (post_id, user_id, content) VALUE ('" . $comment->getPostId() . "', '" . $comment->getPostId() . "', '" . $comment->getContent() . "')");
+
+        return intval($this->db_query->lastInsertId());
     }
 }

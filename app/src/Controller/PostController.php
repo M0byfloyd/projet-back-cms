@@ -64,4 +64,17 @@ class PostController extends BaseController
             $this->HTTPResponse->redirect('/');
         }
     }
+
+    public function updatePost() {
+        $postModel = new PostManager();
+
+        $post = $postModel->getById($this->params['post_id']);
+
+        if (empty($_POST['title']) || empty($_POST['content'])) {
+            $this->render('post/modify-post', ['post'=> $post],'Modification du post');
+        } else {
+
+        }
+
+    }
 }

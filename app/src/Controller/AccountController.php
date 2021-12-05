@@ -109,4 +109,12 @@ class AccountController extends BaseController
     public function setLoggedUser(User $user) {
         $_SESSION['user'] = serialize($user);
     }
+
+    public static function chechIfIsLoggedUser($userid) {
+        if (!empty($_SESSION['user'])) {
+            return unserialize($_SESSION['user'])->getId() == $userid;
+        }
+
+        return null;
+    }
 }

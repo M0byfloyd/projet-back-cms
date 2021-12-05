@@ -39,4 +39,10 @@ class PostManager extends BaseManager
 
         return intval($this->db_query->lastInsertId());
     }
+
+    public function addComment(Post $post, $commentId) {
+
+        var_dump($post);
+        die();
+    }
 }

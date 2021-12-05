@@ -7,6 +7,21 @@
     <div class="col-12">
         <?= $thePost->getContent() ?>
     </div>
+
+    <?php
+    if (\App\Controller\AccountController::chechIfIsLoggedUser($thePost->getUser_id())) {
+    ?>
+
+    <a href="/modify-post/<?= $thePost->getId() ?>">
+        <button class="btn btn-warning">Modifier ce post</button>
+    </a>
+    <a href="/delete-post/<?= $thePost->getId() ?>">
+        <button class="btn btn-danger">Supprimer ce post</button>
+    </a>
+    <?php
+    }
+    ?>
+
     <div class="col-12">
         Date : <?= $thePost->getDate() ?>
     </div>
@@ -17,5 +32,15 @@
                 <li class="list-group-item"><b><?= $comment->getAuthor() ?> : </b> <?= $comment->getContent() ?></li>
             <?php endforeach; ?>
         </ul>
+    </div>
+
+    <div>
+        <?php
+        if (\App\Controller\AccountController::isLogged()) {?>
+            <a href="/new-comment/<?= $thePost->getId() ?>">
+                <button class="btn btn-primary">Ajouter un commentaire</button>
+            </a>
+        <?php } ?>
+
     </div>
 </div>
