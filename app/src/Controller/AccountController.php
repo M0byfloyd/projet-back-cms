@@ -2,63 +2,72 @@
 
 namespace App\Controller;
 
-use App\Model\User;
+use App\Model\UserModel as UserModel;
 
 class AccountController extends BaseController
 {
     public array $paths = [
         'login' => '/login',
-        'account' =>'/account',
-        'signup'=>'/signup'
+        'account' => '/account',
+        'signup' => '/signup'
     ];
 
-    public function logIn() {
+    public function logIn()
+    {
 
         $name = $_POST['name'];
         $password = $_POST['password'];
 
-        if (empty($name) || empty($password) ) {
-            $this->render('account/login', ['paths'=> $this->paths] , 'Page de connexion' );
+        if (empty($name) || empty($password)) {
+            $this->render('account/login', ['paths' => $this->paths], 'Page de connexion');
         } else {
-            $userModel = new User();
+            $userModel = new UserModel();
 
             $user = $userModel->getUserByName($name);
 
-            if ($user->getPassword() === $password) {
+            if ($user->getPassword() !== $password) {
                 die('WRONG PASS WORD');
             }
+            $_SESSION['user'] = serialize($userModel->getById($userModel->setUser($name, $password)));
 
-            header('Location: ' . $this->paths['account']);
+            $this->request->redirect($this->paths['account']);
             exit();
         }
     }
 
-    public function signup() {
+    public function signup()
+    {
 
         $name = $_POST['name'];
         $password = $_POST['password'];
 
-        if (empty($name) || empty($password) ) {
-            $this->render('account/signup', ['paths'=> $this->paths] , 'Page d\'inscritiption' );
+        if (empty($name) || empty($password)) {
+            $this->render('account/signup', ['paths' => $this->paths], 'Page d\'inscritiption');
         } else {
-            $userModel = new User();
+            $userModel = new UserModel();
 
             $_SESSION['user'] = serialize($userModel->getById($userModel->setUser($name, $password)));
 
-            header('Location: ' . $this->paths['account']);
+            $this->request->redirect($this->paths['account']);
+
             exit();
         }
     }
 
 
-    public function account() {
+    public function account()
+    {
         $name = $_POST['name'];
         $password = $_POST['password'];
-        if (empty($name) || empty($password) ) {
-            $this->render('account/index', ['paths'=> $this->paths, 'user' => unserialize($_SESSION['user']) ], 'Page administration');
-        } else {
-            $this->render('account/index', ['paths'=> $this->paths, 'user' => unserialize($_SESSION['user']) ], 'Page administration');
-            echo '<h2>Modification encore non effective</h2>';
-        }
+        $statut = $_POST['statut'];
+
+        $this->render('account/index', ['paths' => $this->paths, 'user' => unserialize($_SESSION['user'])], 'Page administration');
+    }
+
+    public function logout()
+    {
+        unset($_SESSION['user']);
+
+        $this->request->redirect('/');
     }
 }

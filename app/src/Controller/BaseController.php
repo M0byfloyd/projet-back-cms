@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Core\Request as Request;
+
 class BaseController
 {
     public string $templatesPath = './templates/';
     public string $template = 'layout.php';
     public array $params;
+    public $request;
 
     public function render (string $view, array $vars = [], string $pageTitle = 'Blog génial') {
         $view = $this->templatesPath . $view . '.view.php';
@@ -32,6 +35,7 @@ class BaseController
     public function __construct(string $action, array $params = [])
     {
         $this->params = $params;
+        $this->request = new Request();
 
         $method = ucfirst($action);
         if (!is_callable([$this, $method])){

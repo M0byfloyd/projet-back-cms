@@ -2,15 +2,15 @@
 
 namespace App\Controller;
 
-use App\Model\User;
+use App\Model\UserModel;
 
-class UserController
+class UserController extends BaseController
 {
-    public User $user;
+    public UserModel $user;
 
     public function __construct()
     {
-        $this->user = new User();
+        $this->user = new UserModel();
     }
 
     public function showAll(): array
