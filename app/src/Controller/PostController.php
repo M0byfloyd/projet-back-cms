@@ -56,11 +56,11 @@ class PostController extends BaseController
         if (empty($title) || empty($content) ) {
             $this->render('post/new-post', ['paths'=> $this->paths] , 'Nouveaux  post' );
         } else {
-            $postModel = new Post();
+            $postModel = new PostManager();
 
             $postModel->getById($postModel->setPost($title, $content));
 
-            header('Location: ' . $this->paths['account']);
+            header('Location: ' . 'account');
             exit();
         }
     }
