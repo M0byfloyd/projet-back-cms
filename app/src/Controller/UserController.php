@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Model\User;
 
-class UserController
+class UserController extends BaseController
 {
     public User $user;
 
@@ -17,6 +17,9 @@ class UserController
     {
         return $this->user->getAll();
     }
+
+   
+
 
     public function showOne()
     {
