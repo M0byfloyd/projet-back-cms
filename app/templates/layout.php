@@ -36,6 +36,9 @@
                     </li>
                 <?php } else { ?>
                     <li class="nav-item active">
+                        <a class="nav-link" href="/new-post">New post</a>
+                    </li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="/logout">Déconnexion</a>
                     </li>
                 <?php } ?>

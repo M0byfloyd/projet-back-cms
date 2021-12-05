@@ -35,10 +35,11 @@ class AccountController extends BaseController
             $_SESSION['user'] = serialize($user);
 
             $this->HTTPResponse->redirect($this->paths['account']);
-            
+
             exit();
         }
-    
+    }
+
 
     public function signup()
     {
@@ -71,5 +72,4 @@ class AccountController extends BaseController
 
         $this->HTTPResponse->redirect('/');
     }
-    
 }

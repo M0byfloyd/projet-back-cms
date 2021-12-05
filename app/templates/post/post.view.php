@@ -5,7 +5,10 @@
         </h1>
     </div>
     <div class="col-12">
-        <?= $thePost->content ?>
+        <?= $thePost->getContent() ?>
+    </div>
+    <div class="col-12">
+        Date : <?= $thePost->getDate() ?>
     </div>
     <div>
         <h2>Commentaire(s) : </h2>
