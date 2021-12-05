@@ -18,7 +18,6 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/">Le Bl⭕G</a>
 
-            <?php var_dump(\App\Controller\AccountController::isLogged()); ?>
             <p>Vous êtes : <?= \App\Controller\AccountController::isLogged() ? \App\Controller\AccountController::getLoggedUser()->getName() : 'Pas connecté'  ?></p>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
