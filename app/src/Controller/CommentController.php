@@ -2,13 +2,13 @@
 
 namespace App\Controller;
 
-use App\Model\Comment;
+use App\Model\CommentManager;
 
 class CommentController extends BaseController
 {
 
     public function showAllByPost($id) {
-        $commentModel= new Comment();
+        $commentModel= new CommentManager();
 
         $commentModel->getAllByPost($id);
     }

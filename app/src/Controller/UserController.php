@@ -2,24 +2,15 @@
 
 namespace App\Controller;
 
-use App\Model\UserModel;
+use App\Model\UserManager;
 
 class UserController extends BaseController
 {
-    public UserModel $user;
-
-    public function __construct()
-    {
-        $this->user = new UserModel();
-    }
 
     public function showAll(): array
     {
         return $this->user->getAll();
     }
-
-   
-
 
     public function showOne()
     {

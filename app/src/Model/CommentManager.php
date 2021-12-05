@@ -2,9 +2,10 @@
 
 namespace App\Model;
 
+use App\Entity\Comment;
 use PDO;
 
-class Comment extends BaseModel
+class CommentManager extends BaseManager
 {
     public function getAllByPost($id) {
 
@@ -12,7 +13,7 @@ class Comment extends BaseModel
             $dataResult = [];
 
             foreach ($datas as $data) {
-                $dataResult[$data['id']] = new \App\Entity\Comment($data);
+                $dataResult[$data['id']] = new Comment($data);
             }
 
             return $dataResult;

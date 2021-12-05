@@ -2,9 +2,9 @@
 
 namespace App\Model;
 
-use App\Core\PDOFactory;
+use App\Vendor\Core\PDOFactory;
 
-abstract class BaseModel
+abstract class BaseManager
 {
     protected \PDO $db_query;
     public function __construct()

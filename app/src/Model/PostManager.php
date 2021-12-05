@@ -3,12 +3,10 @@
 namespace App\Model;
 
 use PDO;
-use App\Entity\Post as PostEntity;
+use App\Entity\Post as Post;
 
-class Post extends BaseModel
+class PostManager extends BaseManager
 {
-    private $classname = 'post';
-
 
     public function getAll($classname = null): array
     {
@@ -17,7 +15,7 @@ class Post extends BaseModel
         $dataResult = [];
 
         foreach ($datas as $data) {
-            $dataResult[$data['id']] = new PostEntity($data);
+            $dataResult[$data['id']] = new Post($data);
         }
 
         return $dataResult;
@@ -25,6 +23,6 @@ class Post extends BaseModel
 
     public function getById($id)
     {
-        return new \App\Entity\Post($this->db_query->query('SELECT * FROM post WHERE id = ' . $id )->fetch(PDO::FETCH_ASSOC));
+        return new Post($this->db_query->query('SELECT * FROM post WHERE id = ' . $id )->fetch(PDO::FETCH_ASSOC));
     }
 }

@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Model\UserModel as UserModel;
+use App\Entity\User;
+use App\Model\UserManager as UserModel;
 
 class AccountController extends BaseController
 {
@@ -26,9 +27,12 @@ class AccountController extends BaseController
             $user = $userModel->getUserByName($name);
 
             if ($user->getPassword() !== $password) {
-                die('WRONG PASS WORD');
+                $this->render('account/login', ['paths' => $this->paths], 'Page de connexion');
+                echo 'Mauvais mdp';
+                return;
             }
-            $_SESSION['user'] = serialize($userModel->getById($userModel->setUser($name, $password)));
+
+            $_SESSION['user'] = serialize($user);
 
             $this->request->redirect($this->paths['account']);
             exit();
@@ -46,7 +50,7 @@ class AccountController extends BaseController
         } else {
             $userModel = new UserModel();
 
-            $_SESSION['user'] = serialize($userModel->getById($userModel->setUser($name, $password)));
+            $_SESSION['user'] = serialize($userModel->getById($userModel->setUser(new User(['password' => $password, 'name'=> $name]))));
 
             $this->request->redirect($this->paths['account']);
 
@@ -57,10 +61,6 @@ class AccountController extends BaseController
 
     public function account()
     {
-        $name = $_POST['name'];
-        $password = $_POST['password'];
-        $statut = $_POST['statut'];
-
         $this->render('account/index', ['paths' => $this->paths, 'user' => unserialize($_SESSION['user'])], 'Page administration');
     }
 

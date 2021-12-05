@@ -2,11 +2,12 @@
 
 namespace App\Model;
 
-use App\Entity\User as User;
+use App\Entity\User;
 use PDO;
 
-class UserModel extends BaseModel
+class UserManager extends BaseManager
 {
+
     public function getAll(): array
     {
         $datas = $this->db_query->query('SELECT * FROM user')->fetchAll(PDO::FETCH_ASSOC);
@@ -29,21 +30,16 @@ class UserModel extends BaseModel
         return new User($this->db_query->query("SELECT * FROM user WHERE name = '" . $name . "'")->fetch());
     }
 
-    public function setUser($name, $password)
+    public function setUser(User $user): int
     {
-        $this->db_query->query("INSERT INTO user (name, password, statut) VALUE ('$name', '$password', '1')");
+        $this->db_query->query("INSERT INTO user (name, password, statut) VALUE ('". $user->getName()."', '" .$user->getPassword() ."', '1')");
 
         return intval($this->db_query->lastInsertId());
     }
 
     public function updateUser(User $user)
     {
-        var_dump($user);
-
         $sql = "UPDATE user SET password = '" . $user->getPassword() . "' name = '" . $user->getName() . "' statut = " . $user->getStatut() . " WHERE id =" . $user->getId();
-
-        var_dump($sql);
-        var_dump($this->db_query->query($sql));
 
         return intval($this->db_query->lastInsertId());
     }
