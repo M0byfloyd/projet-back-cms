@@ -44,4 +44,20 @@ class PostController extends BaseController
         parent::render('post/post',['thePost' => $thePost, 'comments' => $comments],'Les posts');
 
     }
+    public function newPost() {
+
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+
+        if (empty($title) || empty($content) ) {
+            $this->render('post/new-post', ['paths'=> $this->paths] , 'Nouveaux  post' );
+        } else {
+            $postModel = new Post();
+
+            $_SESSION['user'] = serialize($postModel->getById($postModel->setPost($title, $content)));
+
+            header('Location: ' . $this->paths['account']);
+            exit();
+        }
+    }
 }

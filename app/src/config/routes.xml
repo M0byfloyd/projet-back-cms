@@ -2,6 +2,8 @@
 <routes>
     <route p="" controller="PostController" action="showAll"/>
     <route p="post" controller="PostController" action="showOne" params="id"/>
+    <route p="new-post" controller="PostController" action="newPost"/>
+
 
     <route p="login" controller="AccountController" action="login" />
     <route p="signup" controller="AccountController" action="signup" />

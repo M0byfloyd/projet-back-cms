@@ -13,10 +13,7 @@ class AdminController extends BaseController
         $user = new User();
         $allUsers = $model->getAll();
         
-        foreach ($allUsers as $user) {
-            $theUser = $allUsers[$user->id];
-        }
-
+        
             
 
         $this->render('account/users',['allUsers' => $allUsers],'Les Users');
