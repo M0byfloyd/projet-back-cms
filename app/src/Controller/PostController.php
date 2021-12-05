@@ -33,9 +33,8 @@ class PostController extends BaseController
         $model = new PostManager();
         $user = new UserManager();
         $comment = new CommentManager();
-
+        
         $thePost = $model->getById($this->params['id']);
-
         $thePost->user = $user->getById($thePost->user_id);
         $comments = $comment->getAllByPost($thePost->id);
         $thePost->commentCount = count($comments);

@@ -3,8 +3,8 @@
 namespace App\Model;
 
 use PDO;
-use App\Entity\Post;
-use App\Entity\User;
+use App\Entity\Post as Post;
+use App\Vendor\Core\HTTPResponse as HTTPResponse;
 
 class PostManager extends BaseManager
 {
@@ -24,7 +24,13 @@ class PostManager extends BaseManager
 
     public function getById($id)
     {
-        return new Post($this->db_query->query('SELECT * FROM post WHERE id = ' . $id )->fetch(PDO::FETCH_ASSOC));
+        $postData = $this->db_query->query('SELECT * FROM post WHERE id = ' . $id )->fetch(PDO::FETCH_ASSOC);
+        if (!$postData) {
+            $HTTPResponse = new HTTPResponse();
+            $HTTPResponse->redirect('/');
+        } else {
+            return  new Post($postData);
+        }
     }
 
     public function setPost(Post $post) {

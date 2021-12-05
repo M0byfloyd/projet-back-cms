@@ -17,4 +17,22 @@ class AdminController extends BaseController
 
     }
 
+    public function showOne()
+    {
+        
+        $model = new UserManager();
+        $theUser = $model->getById($this->params['id']);
+
+        $this->render('account/users',['allUsers' => [$theUser]],'Le User');
+
+    }
+
+    public function deleteUser()
+    {
+        $model = new UserManager();
+        $theUser = $model->getById($this->params['id']);
+
+        $this->render('account/users',['allUsers' => [$theUser]],'Le User');
+    }
+
 }
