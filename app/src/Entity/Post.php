@@ -9,6 +9,23 @@ class Post extends BaseEntity
     public $user_id;
     public $id;
     public $date;
+    public $commentlist;
+
+    /**
+     * @return mixed
+     */
+    public function getCommentlist()
+    {
+        return $this->commentlist;
+    }
+
+    /**
+     * @param mixed $commentlist
+     */
+    public function setCommentlist($commentlist): void
+    {
+        $this->commentlist = $commentlist;
+    }
 
     /**
      * @return mixed

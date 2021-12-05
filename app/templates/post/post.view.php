@@ -29,7 +29,7 @@
         <h2>Commentaire(s) : </h2>
         <ul class="list-group">
             <?php foreach ($comments as $comment): ?>
-                <li class="list-group-item"><b><?= $comment->getAuthor() ?> : </b> <?= $comment->getContent() ?></li>
+                <li class="list-group-item"><b><?= $comment->getUser_id() ?> : </b> <?= $comment->getContent() ?></li>
             <?php endforeach; ?>
         </ul>
     </div>

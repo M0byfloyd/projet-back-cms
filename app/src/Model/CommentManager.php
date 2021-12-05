@@ -11,7 +11,7 @@ class CommentManager extends BaseManager
     public function getAllByPost($id): array
     {
 
-            $datas =  $this->db_query->query('SELECT * FROM comment WHERE user_id = ' . $id)->fetchAll(PDO::FETCH_ASSOC);
+            $datas =  $this->db_query->query('SELECT * FROM comment WHERE post_id = ' . $id)->fetchAll(PDO::FETCH_ASSOC);
             $dataResult = [];
 
             foreach ($datas as $data) {
@@ -34,7 +34,9 @@ class CommentManager extends BaseManager
 
     public function setComment(Comment $comment): int
     {
-        $this->db_query->query("INSERT INTO comment (post_id, user_id, content) VALUE ('" . $comment->getPostId() . "', '" . $comment->getPostId() . "', '" . $comment->getContent() . "')");
+        $sql = "INSERT INTO comment (post_id, user_id, content) VALUE (" . $comment->getPost_Id() . ", " . $comment->getUSer_Id() . ", '" . $comment->getContent() . "')";
+
+        $this->db_query->query($sql);
 
         return intval($this->db_query->lastInsertId());
     }

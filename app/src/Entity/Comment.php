@@ -4,11 +4,11 @@ namespace App\Entity;
 
 class Comment extends BaseEntity
 {
-    private $id;
-    private $post_id;
-    private $user_id;
-    private $content;
-    private $author;
+    public $id;
+    public $post_id;
+    public $user_id;
+    public $content;
+    public $author;
 
     /**
      * @return mixed
@@ -29,39 +29,7 @@ class Comment extends BaseEntity
     /**
      * @return mixed
      */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-    /**
-     * @param mixed $author
-     */
-    public function setAuthor($author): void
-    {
-        $this->author = $author;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUserId()
-    {
-        return $this->user_id;
-    }
-
-    /**
-     * @param mixed $user_id
-     */
-    public function setUserId($user_id): void
-    {
-        $this->user_id = $user_id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPostId()
+    public function getPost_Id()
     {
         return $this->post_id;
     }
@@ -69,9 +37,25 @@ class Comment extends BaseEntity
     /**
      * @param mixed $post_id
      */
-    public function setPostId($post_id): void
+    public function setPost_Id($post_id): void
     {
         $this->post_id = $post_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser_Id()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * @param mixed $user_id
+     */
+    public function setUser_Id($user_id): void
+    {
+        $this->user_id = $user_id;
     }
 
     /**
@@ -89,7 +73,5 @@ class Comment extends BaseEntity
     {
         $this->content = $content;
     }
-
-
 
 }
