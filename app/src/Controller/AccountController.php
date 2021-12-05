@@ -15,6 +15,9 @@ class AccountController extends BaseController
 
     public function logIn()
     {
+        if (AccountController::isLogged()) {
+            $this->HTTPResponse->redirect('/account');
+        }
 
         $name = $_POST['name'];
         $password = $_POST['password'];
@@ -38,9 +41,7 @@ class AccountController extends BaseController
                 return;
             }
 
-
-
-            $_SESSION['user'] = serialize($user);
+            $this->setLoggedUser($user);
 
             $this->HTTPResponse->redirect($this->paths['account']);
 
@@ -51,10 +52,12 @@ class AccountController extends BaseController
 
     public function signup()
     {
+        if (AccountController::isLogged()) {
+            $this->HTTPResponse->redirect('/account');
+        }
 
         $name = $_POST['name'];
         $password = $_POST['password'];
-
 
         if (empty($name) || empty($password)) {
             $this->render('account/signup', ['paths' => $this->paths], 'Page d\'inscription');
@@ -66,19 +69,20 @@ class AccountController extends BaseController
                 echo 'Ce nom d\'utilisateur n\'est pas disponible';
                 return;
             }
-
-            $_SESSION['user'] = serialize($userModel->getById($userModel->setUser(new User(['password' => $password, 'name' => $name]))));
+            $this->setLoggedUser($userModel->getById($userModel->setUser(new User(['password' => $password, 'name' => $name]))));
 
             $this->HTTPResponse->redirect($this->paths['account']);
-
-            exit();
         }
     }
 
 
     public function account()
     {
-        $this->render('account/index', ['paths' => $this->paths, 'user' => unserialize($_SESSION['user'])], 'Page administration');
+        if (!AccountController::isLogged()) {
+            $this->HTTPResponse->redirect('/');
+        }
+
+        $this->render('account/index', ['paths' => $this->paths, 'user' => AccountController::getLoggedUser()], 'Page administration');
     }
 
     public function logout()
@@ -86,5 +90,23 @@ class AccountController extends BaseController
         unset($_SESSION['user']);
 
         $this->HTTPResponse->redirect('/');
+    }
+
+    public static function isLogged(): bool
+    {
+        return !empty($_SESSION['user']);
+    }
+
+    public static function getLoggedUser()
+    {
+        if (!empty($_SESSION['user'])) {
+            return unserialize($_SESSION['user']);
+        }
+
+        return null;
+    }
+
+    public function setLoggedUser(User $user) {
+        $_SESSION['user'] = serialize($user);
     }
 }

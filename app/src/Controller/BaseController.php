@@ -10,8 +10,8 @@ class BaseController
     public string $templatesPath = './templates/';
     public string $template = 'layout.php';
     public array $params;
-    public $HTTPRequest;
-    public $HTTPResponse;
+    public HTTPRequest $HTTPRequest;
+    public HTTPResponse $HTTPResponse;
 
     public function render (string $view, array $vars = [], string $pageTitle = 'Blog génial') {
         $view = $this->templatesPath . $view . '.view.php';
@@ -29,11 +29,6 @@ class BaseController
         return ob_get_clean();
     }
 
-    /**
-     * BaseController constructor
-     * @param string $action
-     * @param array $params
-     */
     public function __construct(string $action, array $params = [])
     {
         $this->params = $params;

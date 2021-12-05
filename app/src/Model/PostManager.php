@@ -33,8 +33,8 @@ class PostManager extends BaseManager
         }
     }
 
-    public function setPost(Post $post) {
-
+    public function setPost(Post $post): int
+    {
         $this->db_query->query("INSERT INTO post (date, user_id, commentlist, title, content) VALUE ('" . $post->getDate() . "', '" .$post->getUser_id() ."', '[]', '".$post->getTitle() ."', '".$post->getContent() ."')");
 
         return intval($this->db_query->lastInsertId());

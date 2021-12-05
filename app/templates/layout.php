@@ -18,7 +18,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/">Le Bl⭕G</a>
 
-            <p>Vous êtes : <?= unserialize($_SESSION['user'])->name  ? unserialize($_SESSION['user'])->name  : 'Pas connecté' ?></p>
+            <p>Vous êtes : <?= \App\Controller\AccountController::isLogged() ? \App\Controller\AccountController::getLoggedUser()->getName() : 'Pas connecté'  ?></p>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <?php
-                    if (empty($_SESSION['user'])) { ?>
+                    if (!\App\Controller\AccountController::isLogged()) { ?>
                         <li class="nav-item active">
                             <a class="nav-link" href="/login">Connexion</a>
                         </li>
@@ -42,7 +42,7 @@
                             <a class="nav-link" href="/new-post">Ecrire un nouvel article</a>
                         </li>
                     <?php }
-                    if (isset($_SESSION['user']) && unserialize($_SESSION['user'])->statut) :?>
+                    if ( \App\Controller\AccountController::isLogged() && \App\Controller\AccountController::getLoggedUser()->getStatut()) :?>
                         <li class="nav-item active">
                             <a class="nav-link" href="/users">Liste des utilisateurs</a>
                         </li>
