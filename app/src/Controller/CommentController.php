@@ -27,14 +27,14 @@ class CommentController extends BaseController
         $commentManager = new CommentManager();
         $postManager = new PostManager();
 
-        $comment = new Comment(['post_id' => $this->params['postId'], 'user_id' => AccountController::getLoggedUser()->getId(), 'content' => $_POST['content']]);
 
+        $newComment = ['post_id' => $this->params['id'], 'user_id' => AccountController::getLoggedUser()->getId(), 'content' => $_POST['content']];
 
-        var_dump($this->params['id']);
+        $comment = new Comment($newComment);
 
-        //$postManager->addComment(), $commentManager->setComment($comment));
+        $postManager->addComment($postManager->getById($this->params['id']), $commentManager->setComment($comment));
 
-        $this->HTTPResponse->redirect('/post/' . $this->params['postId']);
+        $this->HTTPResponse->redirect('/post/' . $this->params['id']);
 
     }
 

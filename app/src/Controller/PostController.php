@@ -13,15 +13,12 @@ class PostController extends BaseController
     {
         $model = new PostManager();
         $user = new UserManager();
-        $comment = new CommentManager();
         $allPosts = $model->getAll();
 
         foreach ($allPosts as $post) {
             $thePost = $allPosts[$post->id];
 
             $thePost->user = $user->getById($post->user_id);
-            $thePost->commentList = $comment->getAllByPost($post->id);
-            $thePost->commentCount = count($thePost->commentList);
         }
 
         $this->render('post/posts', ['allPosts' => $allPosts], 'Les posts');
@@ -32,12 +29,11 @@ class PostController extends BaseController
     {
         $model = new PostManager();
         $user = new UserManager();
-        $comment = new CommentManager();
+        $commentManager = new CommentManager();
         
         $thePost = $model->getById($this->params['id']);
         $thePost->user = $user->getById($thePost->user_id);
-        $comments = $comment->getAllByPost($thePost->id);
-        $thePost->commentCount = count($comments);
+        $comments = $commentManager->getAllByPost($thePost->id);
 
         $this->render('post/post', ['thePost' => $thePost, 'comments' => $comments], 'Les posts');
 
@@ -58,7 +54,8 @@ class PostController extends BaseController
                     ['title' => $title,
                         'content' => $content,
                         'date' => date('Y-m-d', time()),
-                        'user_id' => AccountController::getLoggedUser()->getId()
+                        'user_id' => AccountController::getLoggedUser()->getId(),
+                        'commentlist'=>'[]'
                     ]));
 
             $this->HTTPResponse->redirect('/');

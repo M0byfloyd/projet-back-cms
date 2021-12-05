@@ -2,9 +2,9 @@
 
 namespace App\Model;
 
-use PDO;
 use App\Entity\Post as Post;
 use App\Vendor\Core\HTTPResponse as HTTPResponse;
+use PDO;
 
 class PostManager extends BaseManager
 {
@@ -12,7 +12,7 @@ class PostManager extends BaseManager
     public function getAll($classname = null): array
     {
 
-        $datas =  $this->db_query->query('SELECT * FROM post')->fetchAll(PDO::FETCH_ASSOC);
+        $datas = $this->db_query->query('SELECT * FROM post')->fetchAll(PDO::FETCH_ASSOC);
         $dataResult = [];
 
         foreach ($datas as $data) {
@@ -24,7 +24,7 @@ class PostManager extends BaseManager
 
     public function getById($id)
     {
-        $postData = $this->db_query->query('SELECT * FROM post WHERE id = ' . $id )->fetch(PDO::FETCH_ASSOC);
+        $postData = $this->db_query->query('SELECT * FROM post WHERE id = ' . $id)->fetch(PDO::FETCH_ASSOC);
         if (!$postData) {
             $HTTPResponse = new HTTPResponse();
             $HTTPResponse->redirect('/');
@@ -35,14 +35,20 @@ class PostManager extends BaseManager
 
     public function setPost(Post $post): int
     {
-        $this->db_query->query("INSERT INTO post (date, user_id, commentlist, title, content) VALUE ('" . $post->getDate() . "', '" .$post->getUser_id() ."', '[]', '".$post->getTitle() ."', '".$post->getContent() ."')");
+        $this->db_query->query("INSERT INTO post (date, user_id, commentlist, title, content) VALUE ('" . $post->getDate() . "', '" . $post->getUser_id() . "', '" . $post->getCommentlist() . "', '" . $post->getTitle() . "', '" . $post->getContent() . "')");
 
         return intval($this->db_query->lastInsertId());
     }
 
-    public function addComment(Post $post, $commentId) {
+    public function addComment(Post $post, $commentId)
+    {
+        $commentArray = json_decode($post->commentlist);
+        $commentArray[] = $commentId;
 
-        var_dump($post);
-        die();
+        $sql = "UPDATE post SET commentlist = '" . json_encode($commentArray) . "'WHERE id = " . $post->getId();
+
+        $this->db_query->query($sql);
+
+        return intval($this->db_query->lastInsertId());
     }
 }
