@@ -51,22 +51,15 @@ class UserManager extends BaseManager
         return intval($this->db_query->lastInsertId());
     }
 
-    public function updateUser(User $user)
-    {
-        $sql = "UPDATE user SET password = '" . $user->getPassword() . "' name = '" . $user->getName() . "' statut = " . $user->getStatut() . " WHERE id =" . $user->getId();
-
-        return intval($this->db_query->lastInsertId());
-    }
-
     public function deleteUser($id) 
     {
         $this->db_query->query('DELETE FROM user WHERE id = '. $id)->fetch(PDO::FETCH_ASSOC);
         return intval($this->db_query->lastInsertId());
     }
 
-    public function isAdmin($user) {
-        $statut = $user->statut;
-
-        return $statut;
+    public function updateUser(User $updatedUser) {
+        $sql = "UPDATE user SET password = '" . $updatedUser->getPassword() . "', name = '" . $updatedUser->getName() . "', statut = " . $updatedUser->getStatut() . " WHERE id =" . \App\Controller\AccountController::getLoggedUser()->id;
+        $this->db_query->query($sql)->fetch(PDO::FETCH_ASSOC);
+        return intval($this->db_query->lastInsertId());
     }
 }

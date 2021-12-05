@@ -4,19 +4,21 @@
     <route p="post" controller="PostController" action="showOne" params="id"/>
     <route p="posts" controller="PostController" action="showAll" />
     <route p="new-post" controller="PostController" action="newPost"/>
-    <route p="modify-post" controller="PostController" action="updatePost" params="id"/>
-
+    <route p="post-delete" controller="PostController" action="deletePost" params="id" />
+    <route p="post-update" controller="PostController" action="updatePost" params="id" />
 
     <route p="login" controller="AccountController" action="login" />
     <route p="signup" controller="AccountController" action="signup" />
     <route p="account" controller="AccountController" action="account" />
     <route p="logout" controller="AccountController" action="logout" />
-    <route p="users" controller="AdminController" action="showAll" />
 
+    <route p="users" controller="AdminController" action="showAll" />
     <route p="users" controller="AdminController" action="showAll" />
     <route p="user" controller="AdminController" action="showOne" params="id"/>    
     <route p="user-delete" controller="AdminController" action="deleteUser" params="id"/>
+    <route p="user-update" controller="AdminController" action="updateUser" params="id"/>
 
     <route p="new-comment" controller="CommentController" action="setComment" params="id"/>
 
+    
 </routes>

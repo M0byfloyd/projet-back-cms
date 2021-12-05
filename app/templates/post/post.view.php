@@ -9,7 +9,7 @@
     </div>
 
     <?php
-    if (\App\Controller\AccountController::chechIfIsLoggedUser($thePost->getUser_id())) {
+    if (\App\Controller\AccountController::checkIfIsLoggedUser($thePost->getUser_id())) {
     ?>
 
     <a href="/modify-post/<?= $thePost->getId() ?>">

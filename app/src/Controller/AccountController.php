@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Model\UserManager as UserModel;
+use App\Vendor\Core\HTTPResponse;
 
 class AccountController extends BaseController
 {
@@ -85,11 +86,13 @@ class AccountController extends BaseController
         $this->render('account/index', ['paths' => $this->paths, 'user' => AccountController::getLoggedUser()], 'Page administration');
     }
 
-    public function logout()
+    public static function logout()
     {
         unset($_SESSION['user']);
 
-        $this->HTTPResponse->redirect('/');
+        $HTTPResponse = new HTTPResponse();
+
+        $HTTPResponse->redirect('/');
     }
 
     public static function isLogged(): bool
@@ -106,11 +109,11 @@ class AccountController extends BaseController
         return null;
     }
 
-    public function setLoggedUser(User $user) {
+    public static function setLoggedUser(User $user) {
         $_SESSION['user'] = serialize($user);
     }
 
-    public static function chechIfIsLoggedUser($userid) {
+    public static function checkIfIsLoggedUser($userid) {
         if (!empty($_SESSION['user'])) {
             return unserialize($_SESSION['user'])->getId() == $userid;
         }

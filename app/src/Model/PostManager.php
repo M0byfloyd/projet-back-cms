@@ -9,7 +9,7 @@ use PDO;
 class PostManager extends BaseManager
 {
 
-    public function getAll($classname = null): array
+    public function getAll(): array
     {
 
         $datas = $this->db_query->query('SELECT * FROM post')->fetchAll(PDO::FETCH_ASSOC);
@@ -49,6 +49,16 @@ class PostManager extends BaseManager
 
         $this->db_query->query($sql);
 
+        return intval($this->db_query->lastInsertId());
+    }
+
+    public function updatePost(Post $updatedPost) {
+        $this->db_query->query("UPDATE post SET title = '" . $updatedPost->getTitle() . "', content = '" . $updatedPost->getContent() . "' WHERE id = " . $updatedPost->getId())->fetch(PDO::FETCH_ASSOC);
+        return intval($this->db_query->lastInsertId());
+    }
+
+    public function deletePost($id) {
+        $this->db_query->query('DELETE FROM post WHERE id = '. $id)->fetch(PDO::FETCH_ASSOC);
         return intval($this->db_query->lastInsertId());
     }
 }

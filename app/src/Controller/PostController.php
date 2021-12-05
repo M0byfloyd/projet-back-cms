@@ -22,7 +22,6 @@ class PostController extends BaseController
         }
 
         $this->render('post/posts', ['allPosts' => $allPosts], 'Les posts');
-
     }
 
     public function showOne()
@@ -36,7 +35,6 @@ class PostController extends BaseController
         $comments = $commentManager->getAllByPost($thePost->id);
 
         $this->render('post/post', ['thePost' => $thePost, 'comments' => $comments], 'Les posts');
-
     }
 
     public function newPost()
@@ -51,7 +49,8 @@ class PostController extends BaseController
 
             $postModel->setPost(
                 new Post(
-                    ['title' => $title,
+                    [
+                        'title' => $title,
                         'content' => $content,
                         'date' => date('Y-m-d', time()),
                         'user_id' => AccountController::getLoggedUser()->getId(),
@@ -62,16 +61,26 @@ class PostController extends BaseController
         }
     }
 
-    public function updatePost() {
+    public function updatePost()
+    {
         $postModel = new PostManager();
 
-        $post = $postModel->getById($this->params['post_id']);
+        $post = $postModel->getById($this->params['id']);
 
         if (empty($_POST['title']) || empty($_POST['content'])) {
-            $this->render('post/modify-post', ['post'=> $post],'Modification du post');
+            $this->render('post/post-update', ['post' => $post], 'Modification du post');
         } else {
-
+            $updatedPost = new Post(['title' => $_POST['title'], 'content' => $_POST['content'], 'id' => intval($this->params['id'])]);
+            $postModel->updatePost($updatedPost);
+            $this->HTTPResponse->redirect('/posts');
         }
+    }
+
+    public function deletePost() {
+        $postModel = new PostManager();
+
+        $postModel->deletePost($this->params['id']);
+        $this->HTTPResponse->redirect('/posts');
 
     }
 }
