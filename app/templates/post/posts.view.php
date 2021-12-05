@@ -18,7 +18,8 @@ foreach ($allPosts as $post):
 
         <div class="card-body">
             <p><a href="/post/<?= $post->getId() ?>">Le consulter</a></p>
-          <span>
+            <p>Date : <?= $post->getDate() ?></p>
+            <span>
               De : <a href="#" class="card-link"><?= $post->user->name ?></a>
           </span>
         </div>

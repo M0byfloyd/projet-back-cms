@@ -27,14 +27,9 @@ class PostManager extends BaseManager
         return new Post($this->db_query->query('SELECT * FROM post WHERE id = ' . $id )->fetch(PDO::FETCH_ASSOC));
     }
 
-    public function setPost($title, $content) {
+    public function setPost(Post $post) {
 
-        $date = date('Y-m-d', time());
-        $user_id = unserialize($_SESSION['user'])->getId();
-
-
-
-        $this->db_query->query("INSERT INTO post (date, user_id, commentlist, title, content) VALUE ('$date', '$user_id', '[]', '$title', '$content')");
+        $this->db_query->query("INSERT INTO post (date, user_id, commentlist, title, content) VALUE ('" . $post->getDate() . "', '" .$post->getUser_id() ."', '[]', '".$post->getTitle() ."', '".$post->getContent() ."')");
 
         return intval($this->db_query->lastInsertId());
     }
