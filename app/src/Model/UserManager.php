@@ -63,4 +63,10 @@ class UserManager extends BaseManager
         $this->db_query->query('DELETE FROM user WHERE id = '. $id)->fetch(PDO::FETCH_ASSOC);
         return intval($this->db_query->lastInsertId());
     }
+
+    public function isAdmin($user) {
+        $statut = $user->statut;
+
+        return $statut;
+    }
 }

@@ -13,6 +13,9 @@ foreach ($allUsers as $user) :
         <div class="card-body">
             <h5 class="card-title"><?= $user->getName() ?></h5>
         </div>
+        <div>
+            <p>Admin <input type="checkbox" disabled <?= $user->statut == 1 ? 'checked' : '' ?>></input></p>
+        </div>
         <a href="/user-delete/<?= $user->getId() ?>"><button class="btn btn-danger">Supprimer cet utilisateur</button></a>
     </div>
     <br>
